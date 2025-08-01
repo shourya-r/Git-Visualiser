@@ -1,0 +1,5 @@
+Hello World!
+Edit this file and use git commands in the terminal.
+
+This file will auto-save as you type!
+Try: git add example.txt

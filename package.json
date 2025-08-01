@@ -1,0 +1,25 @@
+{
+  "name": "git-visualizer",
+  "version": "1.0.0",
+  "description": "Git implementation with visual web interface",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "cd client && npm run build",
+    "start": "node server.js",
+    "install-client": "cd client && npm install",
+    "setup": "npm install && npm run install-client",
+    "build-and-start": "npm run build && npm run start"
+  },
+  "keywords": [
+    "git",
+    "visualizer",
+    "version-control"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  }
+}
