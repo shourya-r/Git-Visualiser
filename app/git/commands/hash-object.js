@@ -29,12 +29,12 @@ class HashObjectCommand {
     // calculate the SHA-1 hash
     const hash = crypto.createHash("sha1").update(blob).digest("hex");
 
-    // if the flag is -w, write the object to the .git/objects directory
+    // if the flag is -w, write the object to the .user-git/objects directory
     if (this.flag && this.flag == "-w") {
       const folder = hash.slice(0, 2);
       const file = hash.slice(2);
 
-      const folderPath = path.join(process.cwd(), ".git", "objects", folder);
+      const folderPath = path.join(process.cwd(), ".user-git", "objects", folder);
 
       if (!fs.existsSync(folderPath)) {
         fs.mkdirSync(folderPath, { recursive: true });

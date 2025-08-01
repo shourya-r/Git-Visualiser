@@ -9,7 +9,7 @@ class AddCommand {
       throw new Error("No file path provided to add command");
     }
     this.filepath = filepath;
-    this.gitPath = path.join(process.cwd(), ".git");
+    this.gitPath = path.join(process.cwd(), ".user-git"); // Use separate directory
     this.indexPath = path.join(this.gitPath, "index");
   }
 

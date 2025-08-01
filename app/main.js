@@ -60,14 +60,14 @@ switch (command) {
 }
 
 function createGitDirectory() {
-  const gitPath = path.join(process.cwd(), ".git");
+  const gitPath = path.join(process.cwd(), ".user-git"); // Use separate directory
   
-  // Remove existing .git directory to ensure fresh start
+  // Remove existing .user-git directory to ensure fresh start
   if (fs.existsSync(gitPath)) {
     fs.rmSync(gitPath, { recursive: true, force: true });
   }
   
-  // Create fresh .git directory structure
+  // Create fresh .user-git directory structure
   fs.mkdirSync(path.join(gitPath, "objects"), {
     recursive: true,
   });

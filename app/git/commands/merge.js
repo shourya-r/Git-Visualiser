@@ -9,7 +9,7 @@ class MergeCommand {
       throw new Error("Branch name is required for merge.");
     }
     this.branchToMerge = branchToMerge;
-    this.gitPath = path.join(process.cwd(), ".git");
+    this.gitPath = path.join(process.cwd(), ".user-git");
   }
 
   readObject(sha) {

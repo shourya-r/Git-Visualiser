@@ -8,7 +8,7 @@ class CheckoutCommand {
       throw new Error("Branch name is required for checkout.");
     }
     this.branchName = branchName;
-    this.gitPath = path.join(process.cwd(), ".git");
+    this.gitPath = path.join(process.cwd(), ".user-git");
   }
 
   readObject(sha) {

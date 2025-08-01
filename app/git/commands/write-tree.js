@@ -15,7 +15,7 @@ function writeFileBlob(currentPath) {
   const folder = hash.slice(0, 2);
   const file = hash.slice(2);
 
-  const folderPath = path.join(process.cwd(), ".git", "objects", folder);
+  const folderPath = path.join(process.cwd(), ".user-git", "objects", folder);
   if (!fs.existsSync(folderPath)) {
     fs.mkdirSync(folderPath, { recursive: true });
   }
@@ -34,7 +34,7 @@ class WriteTreeCommand {
       const result = [];
 
       for (const dirContent of dirContents) {
-        if (dirContent.includes(".git")) continue;
+        if (dirContent.includes(".git") || dirContent.includes(".user-git")) continue;
 
         const currentPath = path.join(basePath, dirContent);
         const stats = fs.statSync(currentPath);
@@ -81,7 +81,7 @@ class WriteTreeCommand {
 
       const treeFolderPath = path.join(
         process.cwd(),
-        ".git",
+        ".user-git",
         "objects",
         folder
       );

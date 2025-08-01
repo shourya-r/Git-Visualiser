@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, 'client/dist')))
 
 // Git state parser functions
 function parseGitState() {
-  const gitDir = path.join(process.cwd(), '.git')
+  const gitDir = path.join(process.cwd(), '.user-git') // Use separate directory
   const state = {
     commits: [],
     branches: [],
@@ -101,7 +101,7 @@ function parseGitState() {
 
 function parseCommitObject(sha) {
   try {
-    const objectPath = path.join(process.cwd(), '.git', 'objects', sha.slice(0, 2), sha.slice(2))
+    const objectPath = path.join(process.cwd(), '.user-git', 'objects', sha.slice(0, 2), sha.slice(2))
     if (!fs.existsSync(objectPath)) return null
 
     const zlib = require('zlib')

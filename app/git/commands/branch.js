@@ -4,7 +4,7 @@ const path = require("path");
 class BranchCommand {
   constructor(branchName) {
     this.branchName = branchName;
-    this.gitPath = path.join(process.cwd(), ".git");
+    this.gitPath = path.join(process.cwd(), ".user-git");
     this.refsPath = path.join(this.gitPath, "refs", "heads");
   }
 

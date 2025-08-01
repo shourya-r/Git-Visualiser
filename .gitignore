@@ -6,6 +6,9 @@ client/node_modules/
 client/dist/
 client/build/
 
+# User playground Git directory (separate from real project Git)
+.user-git/
+
 # Environment variables
 .env
 .env.local

@@ -9,7 +9,7 @@ class CommitCommand {
       throw new Error("Commit message is required.");
     }
     this.message = message;
-    this.gitPath = path.join(process.cwd(), ".git");
+    this.gitPath = path.join(process.cwd(), ".user-git");
     this.indexPath = path.join(this.gitPath, "index");
   }
 

@@ -20,7 +20,7 @@ class LSTreeCommand {
     // 1. Read the initial object provided by the user
     let folder = initialSha.slice(0, 2);
     let file = initialSha.slice(2);
-    let filePath = path.join(process.cwd(), ".git", "objects", folder, file);
+    let filePath = path.join(process.cwd(), ".user-git", "objects", folder, file);
 
     if (!fs.existsSync(filePath)) {
       console.error(`fatal: not a valid object name ${initialSha}`);
@@ -52,7 +52,7 @@ class LSTreeCommand {
       // Now, read the actual tree object using the found SHA
       folder = treeSha.slice(0, 2);
       file = treeSha.slice(2);
-      filePath = path.join(process.cwd(), ".git", "objects", folder, file);
+      filePath = path.join(process.cwd(), ".user-git", "objects", folder, file);
 
       if (!fs.existsSync(filePath)) {
         console.error(

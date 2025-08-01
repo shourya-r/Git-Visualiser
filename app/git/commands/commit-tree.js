@@ -50,7 +50,7 @@ class CommitTreeCommand {
     const folder = hash.slice(0, 2);
     const file = hash.slice(2);
 
-    const folderPath = path.join(process.cwd(), ".git", "objects", folder);
+    const folderPath = path.join(process.cwd(), ".user-git", "objects", folder);
     if (!fs.existsSync(folderPath)) {
       fs.mkdirSync(folderPath, { recursive: true });
     }
