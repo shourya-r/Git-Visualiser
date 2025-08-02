@@ -89,7 +89,16 @@ class MergeCommand {
     files.forEach((file) => {
       const blobObject = this.readObject(file.sha);
       const blobContent = blobObject.subarray(blobObject.indexOf(0) + 1);
-      fs.writeFileSync(path.join(process.cwd(), file.path), blobContent);
+      // Write files to playground directory instead of current directory
+      const playgroundFilePath = path.join(process.cwd(), 'playground', file.path);
+      
+      // Ensure the directory exists
+      const playgroundDir = path.dirname(playgroundFilePath);
+      if (!fs.existsSync(playgroundDir)) {
+        fs.mkdirSync(playgroundDir, { recursive: true });
+      }
+      
+      fs.writeFileSync(playgroundFilePath, blobContent);
     });
 
     // Update the index

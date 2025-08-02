@@ -95,7 +95,9 @@ class WriteTreeCommand {
       return hash;
     }
 
-    const sha = recursivelyCreateTree(process.cwd());
+    // Use playground directory instead of process.cwd()
+    const playgroundPath = path.join(process.cwd(), 'playground');
+    const sha = recursivelyCreateTree(playgroundPath);
     process.stdout.write(`${sha}\n`);
   }
 }

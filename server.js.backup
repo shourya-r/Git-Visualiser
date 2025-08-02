@@ -6,12 +6,6 @@ const cors = require('cors')
 
 const app = express()
 const PORT = process.env.PORT || 8080
-const PLAYGROUND_DIR = path.join(__dirname, 'playground')
-
-// Ensure playground directory exists
-if (!fs.existsSync(PLAYGROUND_DIR)) {
-  fs.mkdirSync(PLAYGROUND_DIR, { recursive: true })
-}
 
 // Middleware
 app.use(cors())
@@ -184,7 +178,7 @@ function getWorkingDirectoryFiles() {
     }
   }
   
-  scanDirectory(PLAYGROUND_DIR)
+  scanDirectory(process.cwd())
   return files
 }
 
@@ -302,7 +296,7 @@ app.post('/api/save-file', (req, res) => {
   }
 
   try {
-    const filePath = path.join(PLAYGROUND_DIR, filename)
+    const filePath = path.join(process.cwd(), filename)
     fs.writeFileSync(filePath, content)
     res.json({ success: true })
   } catch (error) {
@@ -357,7 +351,7 @@ app.get('/api/list-files', (req, res) => {
       }
     }
     
-    scanDirectory(PLAYGROUND_DIR)
+    scanDirectory(process.cwd())
     
     // If no txt files exist, create some default ones for users to play with
     if (files.length === 0) {
@@ -396,7 +390,7 @@ Try making some changes and committing them!`
       // Create the default files on disk
       for (const file of defaultFiles) {
         try {
-          const filePath = path.join(PLAYGROUND_DIR, file.name)
+          const filePath = path.join(process.cwd(), file.name)
           if (!fs.existsSync(filePath)) {
             fs.writeFileSync(filePath, file.content)
             const stat = fs.statSync(filePath)
@@ -426,7 +420,7 @@ app.get('/api/get-file', (req, res) => {
   }
 
   try {
-    const filePath = path.join(PLAYGROUND_DIR, filename)
+    const filePath = path.join(process.cwd(), filename)
     if (!fs.existsSync(filePath)) {
       return res.status(404).json({ error: 'File not found' })
     }

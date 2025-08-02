@@ -10,16 +10,17 @@ class HashObjectCommand {
   }
 
   execute() {
-    const filePath = path.resolve(this.filePath);
+    // Resolve file path from playground directory instead of current directory
+    const fullFilePath = path.join(process.cwd(), 'playground', this.filePath);
 
     // check if the file exists
-    if (!fs.existsSync(filePath)) {
-      console.error(`fatal: unable to read file ${filePath}`);
+    if (!fs.existsSync(fullFilePath)) {
+      console.error(`fatal: unable to read file ${this.filePath}`);
       process.exit(128); // Exit to match git's behavior for bad file
     }
 
     // read the file content
-    const fileContent = fs.readFileSync(filePath);
+    const fileContent = fs.readFileSync(fullFilePath);
     const fileLength = fileContent.length;
 
     // create the blob object

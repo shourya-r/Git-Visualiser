@@ -37,8 +37,8 @@ class AddCommand {
   }
 
   execute() {
-    // 1. Check if the file exists in the working directory
-    const fullFilepath = path.join(process.cwd(), this.filepath);
+    // 1. Check if the file exists in the playground directory
+    const fullFilepath = path.join(process.cwd(), 'playground', this.filepath);
     if (!fs.existsSync(fullFilepath)) {
       console.error(
         `fatal: pathspec '${this.filepath}' did not match any files`

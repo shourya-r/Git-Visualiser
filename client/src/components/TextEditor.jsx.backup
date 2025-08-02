@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import Editor from '@monaco-editor/react'
 import { Save, FileText, Plus, Check, AlertCircle, RefreshCw } from 'lucide-react'
-import { useGitContext } from '../context/GitContext'
 
 function TextEditor() {
   const [files, setFiles] = useState([])
@@ -12,7 +11,6 @@ function TextEditor() {
   const [diskFiles, setDiskFiles] = useState([]) // Files that exist on disk
   const editorRef = useRef(null)
   const autoSaveTimeoutRef = useRef(null)
-  const { currentBranch, lastCommand } = useGitContext()
 
   const activeFile = files[activeFileIndex]
 
@@ -44,14 +42,6 @@ function TextEditor() {
       }
     }
   }, [activeFile?.content, activeFile?.name])
-  // Reload files when Git state changes (e.g., after branch switch)
-  useEffect(() => {
-    if (lastCommand && (lastCommand.includes('checkout') || lastCommand.includes('branch'))) {
-      console.log('Git state changed, reloading files...')
-      loadDiskFiles()
-    }
-  }, [currentBranch, lastCommand])
-
 
   const loadDiskFiles = async () => {
     try {

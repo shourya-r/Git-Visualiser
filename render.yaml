@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: git-visualizer
+    env: node
+    plan: free
+    buildCommand: npm run render-build
+    startCommand: npm run render-start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
